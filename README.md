@@ -15,7 +15,7 @@ The project is still under development. Currently, the CPU section is available,
 ---
 
 ## Folder Structure
-`
+
 public
  ┣ css
  ┃ ┗ style.css
@@ -59,7 +59,7 @@ src
  ┣ cpu-data.json
  ┣ server.js
  ┗ users.json
-`
+
 
 ---
 ## 📁 Project Status
