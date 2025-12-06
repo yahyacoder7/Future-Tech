@@ -14,17 +14,17 @@ The project is still under development. Currently, the CPU section is available,
 
 ---
 ## Folder Structure
-public
- ┣ css
- ┃ ┗ style.css
- ┣ icons
- ┃ ┗ icons.png...
- ┣ images
- ┃ ┗ img.png...
- ┣ js
- ┃ ┗ fetch.js...
- ┗ views
-   ┗ html-pages.html...
+public <br>
+ ┣ css <br>
+ ┃ ┗ style.css<br>
+ ┣ icons<br>
+ ┃ ┗ icons.png...<br>
+ ┣ images<br>
+ ┃ ┗ img.png...<br>
+ ┣ js<br>
+ ┃ ┗ fetch.js...<br>
+ ┗ views<br>
+   ┗ html-pages.html...<br>
 ---
 ## 📁 Project Status
 
@@ -46,10 +46,14 @@ New pages, components, and improvements are added over time.
 
 After downloading or cloning the repository, install the required dependencies:
 
-```bash
+```bash <h3>Install Dependencies <mark> Requierd </mark> </h3>
 npm install
+```
+```bash  <h3>Run The Project</h3>
 npm start 
 ```
-* Then Open: http://localhost:3000
+```bash  <h3>Then Open:</h3> 
+http://localhost:3000
+```
 
 
