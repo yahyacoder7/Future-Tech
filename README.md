@@ -15,48 +15,51 @@ The project is still under development. Currently, the CPU section is available,
 ---
 
 ## Folder Structure
-📦public
- ┣ 📂css
- ┃ ┗ 📜style.css
- ┣ 📂icons
- ┃ ┣ 📜edit-svgrepo-com.svg
- ┃ ┗ 📜IntroBackground-removebg-preview_upscayl_6x_upscayl-standard-4x.png
- ┣ 📂images
- ┃ ┣ 📜Accessories.jpeg
- ┃ ┣ 📜BestValue.jpeg
- ┃ ┣ 📜Case.jpeg
- ┃ ┣ 📜CPU.jpeg
- ┃ ┣ 📜GPU.jpeg
- ┃ ┣ 📜High-EndWorkstation.jpeg
- ┃ ┣ 📜IntroBackground.jpeg
- ┃ ┣ 📜matherboard.jpeg
- ┃ ┣ 📜powersupply.jpeg
- ┃ ┣ 📜ProfessionalGamerBuild 2.jpeg
- ┃ ┣ 📜ProfessionalGamerBuild.jpeg
- ┃ ┣ 📜RAM.jpeg
- ┃ ┣ 📜Screen.jpeg
- ┃ ┗ 📜Storage.jpeg
- ┣ 📂js
- ┃ ┣ 📜api.js
- ┃ ┣ 📜script.js
- ┃ ┗ 📜sign-up.js
- ┗ 📂views
- ┃ ┣ 📜accessories.htm
- ┃ ┣ 📜add-cpu.htm
- ┃ ┣ 📜case.htm
- ┃ ┣ 📜cpu.ejs
- ┃ ┣ 📜gpu.htm
- ┃ ┣ 📜index.htm
- ┃ ┣ 📜motherboard.htm
- ┃ ┣ 📜powersupply.htm
- ┃ ┣ 📜ram.htm
- ┃ ┣ 📜screen.htm
- ┃ ┣ 📜sign-up.htm
- ┃ ┗ 📜storage.htm
- 📦src
- ┣ 📜cpu-data.json
- ┣ 📜server.js
- ┗ 📜users.json
+`
+public
+ ┣ css
+ ┃ ┗ style.css
+ ┣ icons
+ ┃ ┣ edit-svgrepo-com.svg
+ ┃ ┗ IntroBackground.png
+ ┣ images
+ ┃ ┣ Accessories.jpeg
+ ┃ ┣ BestValue.jpeg
+ ┃ ┣ Case.jpeg
+ ┃ ┣ CPU.jpeg
+ ┃ ┣ GPU.jpeg
+ ┃ ┣ High-EndWorkstation.jpeg
+ ┃ ┣ IntroBackground.jpeg
+ ┃ ┣ matherboard.jpeg
+ ┃ ┣ powersupply.jpeg
+ ┃ ┣ ProfessionalGamerBuild2.jpeg
+ ┃ ┣ ProfessionalGamerBuild.jpeg
+ ┃ ┣ RAM.jpeg
+ ┃ ┣ Screen.jpeg
+ ┃ ┗ Storage.jpeg
+ ┣ js
+ ┃ ┣ api.js
+ ┃ ┣ script.js
+ ┃ ┗ sign-up.js
+ ┗ views
+   ┣ accessories.htm
+   ┣ add-cpu.htm
+   ┣ case.htm
+   ┣ cpu.ejs
+   ┣ gpu.htm
+   ┣ index.htm
+   ┣ motherboard.htm
+   ┣ powersupply.htm
+   ┣ ram.htm
+   ┣ screen.htm
+   ┣ sign-up.htm
+   ┗ storage.htm
+
+src
+ ┣ cpu-data.json
+ ┣ server.js
+ ┗ users.json
+`
 
 ---
 ## 📁 Project Status
@@ -87,7 +90,7 @@ npm install
 ```bash  
 npm start 
 ```
-3-The Open
+3-Then Open
 ```bash 
 http://localhost:3000
 ```
