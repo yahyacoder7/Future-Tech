@@ -46,13 +46,16 @@ New pages, components, and improvements are added over time.
 
 After downloading or cloning the repository, install the required dependencies:
 
-```bash <h3>Install Dependencies <mark> Requierd </mark> </h3>
+1-Install Dependencies >>Requierd<<
+```bash 
 npm install
 ```
-```bash  <h3>Run The Project</h3>
+2-Run The Project
+```bash  
 npm start 
 ```
-```bash  <h3>Then Open:</h3> 
+3-The Open
+```bash 
 http://localhost:3000
 ```
 
