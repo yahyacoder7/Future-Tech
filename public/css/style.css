@@ -1,0 +1,846 @@
+/* The Basic Fonts */
+/* -------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+/*------------------------------------------------------------------*/
+/*Basic Colors */
+
+:root {
+    --primary-blue: #3b82f6;
+    /* لون أزرق أساسي */
+    --dark-blue: #1e40af;
+    /* لون أزرق داكن */
+    --text-dark: #1f2937;
+    /* لون النص الأساسي */
+    --text-link: #374151;
+    /* لون روابط التنقل */
+    --bg-white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    /* 1rem = 10px */
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    direction: ltr;
+    letter-spacing: 0.05em;
+
+}
+
+#btn {
+    position: fixed;
+    background: var(--primary-blue);
+    color: white;
+    padding: 1.8rem;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    border: none;
+    z-index: 4;
+    bottom: 2rem;
+    right: 2rem;
+    box-shadow: 0 0 10px 0 rgba(13, 199, 255, 0.575);
+    transition: all 0.2s ease;
+    display: none;
+    cursor: pointer;
+    /* Added cursor pointer */
+}
+
+#btn:hover {
+    background: var(--dark-blue);
+    box-shadow: 0 0 10px 0 var(--dark-blue);
+}
+
+/* -------------------------------------- */
+/* 2. تنسيقات الـ Header والهيكلية */
+/* -------------------------------------- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Increased Z-index for mobile menu overlay */
+    background-color: var(--bg-white);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.header__container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 7rem;
+    /* Increased slightly for better touch targets */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* توزيع الشعار والروابط */
+}
+
+/* -------------------------------------- */
+/* 3. تنسيقات الشعار (Logo) */
+/* -------------------------------------- */
+.header__logo-text {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-blue);
+    margin-left: 2rem;
+}
+
+.header__logo-text span {
+    color: var(--text-dark);
+    /* لون الجزء الثاني من الشعار (Tech) */
+}
+
+
+.header__nav-links {
+    display: flex;
+    gap: 2rem;
+    margin-right: 4rem;
+    align-items: center;
+    /* Center items vertically */
+}
+
+.header__nav-link {
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: clamp(1.4rem, 1vw, 1.5rem);
+    /* Adjusted min font size */
+    font-weight: 600;
+    color: var(--text-link);
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+}
+
+.header__nav-link::after {
+    content: '';
+    /* مطلوب دائماً للعناصر الزائفة */
+    position: absolute;
+    /* يتموضع نسبةً للأب (الرابط) */
+    width: 0;
+    /* يبدأ بعرض صفر، أي أنه مخفي */
+    height: 2px;
+    /* Increased thickness slightly */
+    /* سماكة الخط */
+    bottom: -2px;
+    /* يبعد 5 بكسل عن أسفل النص */
+    left: 50%;
+    transform: translateX(-50%);
+    /* يوسّط الخط أسفل النص */
+    background-color: var(--primary-blue);
+    /* لون الخط */
+    transition: width 0.3s ease;
+    /* التأثير الحركي للانتقال */
+}
+
+.header__nav-link:hover::after {
+    width: 100%;
+}
+
+.header__nav-link:hover {
+    color: var(--primary-blue);
+}
+
+/* -------------------------------------- */
+/* 5. تنسيق الزر المميز (#special-link) */
+/* -------------------------------------- */
+#special-link {
+    color: white;
+    padding: 0.8rem 1.5rem;
+    /* Adjusted padding */
+    border-radius: 2rem;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    /* Adjusted font size */
+    font-weight: 700;
+    /* تدرج لوني تقني احترافي */
+    background: var(--primary-blue);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    display: inline-flex;
+    /* Fix alignment */
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#special-link:hover {
+    transform: scale(1.05);
+    /* تكبير سلس عند التحويم */
+    background: var(--dark-blue);
+    color: white;
+}
+
+#special-link:hover .fa-tools {
+    transform: rotateY(180deg);
+}
+
+#special-link::after {
+    content: none;
+}
+
+.fa-tools {
+    display: inline-block;
+    transition: transform 1s ease;
+    transform-style: preserve-3d;
+    padding: 0;
+}
+
+.intro {
+    position: relative;
+    padding: 8rem 0 6rem;
+    text-align: center;
+    border-bottom: 1px solid #bfdbfe;
+    background-color: #ffffff;
+}
+
+/*.intro-element{
+    position:absolute;
+    left: 5rem;
+    top: 4rem;
+    width: 25rem;
+}*/
+.intro__container {
+    max-width: 110rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    /* Increased side padding */
+}
+
+.intro__title {
+    font-size: clamp(3rem, 5vw, 5rem);
+    /* Increased min size */
+    /* 5xl md:text-6xl */
+    font-weight: 800;
+    /* font-extrabold */
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+}
+
+.intro__highlight {
+    color: var(--primary-blue);
+}
+
+.intro__subtitle {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    /* Adjusted min size */
+    margin: auto;
+    color: #4b5563;
+    /* Fixed variable reference */
+    margin-bottom: 5rem;
+    width: clamp(30rem, 90%, 70rem);
+    /* Adjusted width constraint */
+    line-height: 1.6;
+}
+
+.intro__cta {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 4rem;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    /* Adjusted sizes */
+    font-weight: 700;
+    color: white;
+    border-radius: 3rem;
+    text-decoration: none;
+    background-color: var(--dark-blue);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.intro__cta:hover {
+    transform: scale(1.01);
+    background-color: var(--primary-blue);
+    box-shadow: 0 0 3rem -0.5rem rgba(59, 130, 246, 0.5);
+    /* Fixed color var in shadow */
+}
+
+
+.intro__cta i {
+    font-size: 1.8rem;
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.intro__cta:hover i {
+    transform: translateX(0.5rem);
+}
+
+.categories {
+    padding: 6rem 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.categories__title {
+    font-size: clamp(2.5rem, 4vw, 3.6rem);
+    /* حجم خط متجاوب وواضح */
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4rem;
+    /* مسافة كافية بين العنوان والبطاقات */
+    color: #1f2937;
+    /* لون نص داكن للتباين العالي */
+
+}
+
+.categories__grid {
+    display: grid;
+    gap: 3rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+/* عمودان للشاشات المتوسطة */
+@media (min-width: 640px) {
+    .categories__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ثلاثة أعمدة للشاشات الكبيرة */
+@media (min-width: 1024px) {
+    .categories__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.category {
+    /* -- التنسيقات الجديدة -- */
+    display: block;
+    position: relative;
+    /* مهم جدًا لوضع النص فوق الصورة */
+    height: 35rem;
+    /* ارتفاع موحد وأنيق للبطاقات */
+    border-radius: 0.75rem;
+    /* حواف دائرية ناعمة */
+    overflow: hidden;
+    /* لإخفاء أي جزء يتجاوز الحواف */
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Softer shadow */
+    /* ظل ناعم جدًا واحترافي */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    /* إزالة أي حدود سابقة */
+}
+
+.category__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.category__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* تملأ الصورة المساحة دون تشويه */
+    transition: transform 0.4s ease;
+    /* تأثير زوم سلس عند التمرير */
+}
+
+.category::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 50%);
+    /* تدرج داكن من الأسفل */
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.category__name {
+    position: absolute;
+    bottom: 2rem;
+    /* تحديد مكانه في الأسفل */
+    left: 2rem;
+    /* مع هامش من اليسار */
+    right: 2rem;
+    /* وهامش من اليمين لضمان عدم الالتصاق بالحواف */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: left;
+    /* محاذاة لليسار لمظهر احترافي */
+    z-index: 2;
+    /* للتأكد من أنه فوق الطبقة اللونية */
+    transition: color 0.3s ease;
+    margin: 0;
+    /* إزالة أي هوامش سابقة */
+}
+
+.category:hover {
+
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    /* ظل أعمق لإعطاء إحساس بالبروز */
+    background-color: transparent;
+    /* التأكد من عدم تغيير الخلفية */
+    transform: translateY(-5px);
+
+}
+
+.category:hover .category__img {
+    transform: scale(1.1);
+    /* تكبير الصورة داخل البطاقة */
+}
+
+.category:hover::after {
+    opacity: 0.9;
+    /* جعل الطبقة اللونية أوضح قليلاً */
+}
+
+.category:hover .category__name {
+    color: var(--primary-blue);
+    /* التأكد من بقاء اللون أبيض */
+}
+
+
+
+
+
+/* -------------------------------------- */
+/* 4. قسم التجميعات الجاهزة (Pre-Built Systems) */
+/* -------------------------------------- */
+
+
+/* حاوية القسم الرئيسية */
+.builds {
+    padding: 6rem 2rem;
+    /* مساحة داخلية واسعة للقسم */
+    background-color: #f9fafb;
+    /* خلفية رمادية فاتحة ومريحة للعين */
+    border-top: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* عنوان القسم */
+.builds__title {
+    font-size: clamp(2.8rem, 4vw, 3.6rem);
+    /* حجم خط متجاوب وواضح */
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4rem;
+    /* مسافة كافية بين العنوان والبطاقات */
+    color: #1f2937;
+    /* لون نص داكن للتباين العالي */
+}
+
+/* شبكة عرض البطاقات */
+.builds__grid {
+    display: grid;
+    gap: 3rem;
+    /* مسافة واضحة بين البطاقات */
+    grid-template-columns: repeat(1, 1fr);
+    /* Default mobile */
+    /* عمود واحد افتراضيًا (للموبايل) */
+    max-width: 1280px;
+    /* تحديد عرض أقصى للمحتوى */
+    margin: 0 auto;
+    /* توسيط الشبكة في الصفحة */
+}
+
+/* Media queries specifically for builds */
+@media (min-width: 768px) {
+    .builds__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .builds__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* تصميم بطاقة التجميعة الواحدة */
+.build {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    /* More subtle border */
+    border-radius: 0.75rem;
+    /* حواف دائرية ناعمة */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    /* ظل خفيف وافتراضي */
+    overflow: hidden;
+    /* لإخفاء أي جزء من الصورة يتجاوز الحواف الدائرية */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* تأثير انتقال سلس للحركة والظل */
+    display: flex;
+    /* استخدام Flexbox لتنظيم المحتوى الداخلي */
+    flex-direction: column;
+    /* ترتيب العناصر بشكل عمودي */
+
+}
+
+/* تأثير التمرير (Hover) على البطاقة */
+.build:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-blue);
+    /* ظل أكثر وضوحًا لإعطاء إحساس بالعمق */
+}
+
+/* صورة التجميعة */
+.build__image {
+    width: 100%;
+    height: 25rem;
+    /* Reduced height slightly */
+    /* ارتفاع ثابت لتوحيد شكل الصور */
+    object-fit: cover;
+    /* لضمان ملء الصورة للمساحة المخصصة دون تشويه */
+}
+
+/* حاوية المحتوى النصي للبطاقة */
+.build__content {
+    padding: 2rem;
+    /* مساحة داخلية مريحة للنصوص */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* للسماح لهذا العنصر بالتمدد وملء المساحة المتاحة */
+}
+
+/* اسم التجميعة */
+.build__name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+/* وصف التجميعة */
+.build__desc {
+    color: #6b7280;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    /* يدفع هذا العنصر الوسوم والزر إلى الأسفل */
+}
+
+/* وسوم المواصفات */
+.build__tag {
+    display: inline-block;
+    background-color: #eff6ff;
+    /* خلفية أزرق فاتح جدًا */
+    color: var(--primary-blue);
+    /* لون نص أزرق داكن */
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem;
+    /* مساحة داخلية للوسم */
+    border-radius: 9999px;
+    /* حواف دائرية بالكامل */
+    margin-inline-end: 0.5rem;
+    /* مسافة بين الوسوم */
+    margin-bottom: 1.5rem;
+}
+
+/* زر "عرض التفاصيل" */
+.build__cta {
+    display: block;
+    margin-top: auto;
+    /* يدفع الزر إلى أسفل الحاوية دائمًا */
+    text-align: center;
+    text-decoration: none;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: white;
+    background-color: var(--primary-blue);
+    /* لون أزرق أساسي */
+    transition: background-color 0.3s ease;
+}
+
+.build__cta:hover {
+    background-color: var(--dark-blue);
+    /* لون أزرق أغمق عند التمرير */
+}
+
+/* -------------------------------------- */
+/* 9. Footer (الذيل) - تصميم احترافي ومنظم */
+/* -------------------------------------- */
+
+.footer {
+    background-color: #111827;
+    /* خلفية داكنة وأنيقة */
+    color: #9ca3af;
+    /* لون نص فاتح ومريح للعين */
+    padding: 6rem 2rem 2rem;
+    /* مساحة داخلية متوازنة */
+    font-size: 1.4rem;
+    /* حجم خط أساسي للذيل */
+}
+
+.footer__container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer__grid {
+    display: grid;
+    /* تخطيط متجاوب باستخدام Grid */
+    grid-template-columns: repeat(1, 1fr);
+    /* عمود واحد للموبايل */
+    gap: 4rem;
+    /* مسافة واضحة بين الأعمدة */
+    padding-bottom: 4rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #374151;
+    /* خط فاصل أنيق */
+}
+
+/* تعديل الشبكة للشاشات الأكبر */
+@media (min-width: 640px) {
+    .footer__grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* عمودان للأجهزة اللوحية */
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer__grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        /* أربعة أعمدة للشاشات الكبيرة مع مساحة أكبر للقسم الأول */
+    }
+}
+
+/* قسم "عن الشركة" */
+.footer__about h3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.footer__about p {
+    line-height: 1.7;
+    max-width: 30rem;
+}
+
+/* أقسام الروابط */
+.footer__links h4 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+}
+
+.footer__links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    /* مسافة بين الروابط */
+}
+
+.footer__links a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer__links a:hover {
+    color: var(--primary-blue);
+    padding-left: 0.5rem;
+    /* تغيير اللون عند التمرير */
+}
+
+/* أيقونات وسائل التواصل الاجتماعي */
+.footer__social-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    /* مسافة بين الأيقونات */
+}
+
+.footer__social-icons a {
+    color: #9ca3af;
+    font-size: 2rem;
+    /* حجم مناسب للأيقونات */
+    transition: all 0.3s ease;
+}
+
+.footer__social-icons a:hover {
+    color: var(--primary-blue);
+    /* تغيير اللون عند التمرير */
+    transform: translateY(-3px);
+    /* حركة رفع بسيطة */
+}
+
+/* قسم حقوق النشر */
+.footer__copyright {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #6b7280;
+    padding-top: 2rem;
+}
+
+.footer__copyright p {
+    margin: 0;
+}
+
+/* ==========================================================================
+   --- RESPONSIVE DESIGN (MOBILE OPTIMIZATION) ---
+   Add this section to the END of your CSS file
+   ========================================================================== */
+
+/* Hamburger Menu Button (Hidden by default on Desktop) */
+.mobile-menu-btn {
+    display: none;
+    /* Hidden on desktop */
+    font-size: 2.4rem;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+}
+
+/* Mobile Media Query (Tablets and Mobile Phones) */
+@media (max-width: 768px) {
+
+    /* 1. Header Adjustments */
+    .header__container {
+        padding: 0 2rem;
+        height: 5rem;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        /* Show hamburger icon */
+        margin-right: -10rem;
+    }
+
+    .header__nav-links {
+        position: fixed;
+        top: 7rem;
+        /* Below the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-white);
+        flex-direction: column;
+        padding: 2rem 0;
+        gap: 0;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        /* Animation State (Hidden by default) */
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+        z-index: 99;
+        margin-right: 0;
+    }
+
+    /* Active State (Added via JavaScript) */
+    .header__nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .header__nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid #f3f4f6;
+        font-size: 1.6rem;
+    }
+
+    .header__nav-link:hover {
+        background-color: #f9fafb;
+    }
+
+    /* Special link in mobile menu */
+    #special-link {
+        margin-top: 2rem;
+        width: auto;
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    /* 2. Intro Section Adjustments */
+    .intro {
+        padding: 6rem 0 4rem;
+    }
+
+    .intro__title {
+        font-size: 3.6rem;
+        padding: 0 0rem;
+    }
+
+    .intro__subtitle {
+        width: 90%;
+        font-size: 1.6rem;
+    }
+
+    /* 3. Footer Adjustments */
+    .footer {
+        text-align: center;
+    }
+
+    .footer__about p {
+        margin: 0 auto;
+    }
+
+    .footer__links ul {
+        align-items: center;
+    }
+
+    .footer__social-icons {
+        justify-content: center;
+    }
+
+    .footer__links a:hover {
+        padding-left: 0;
+        /* Remove padding shift on mobile center align */
+        transform: scale(1.1);
+    }
+}
+
+/* Small Mobile Phones */
+@media (max-width: 480px) {
+    .header__logo-text {
+        font-size: 2rem;
+        margin-left: 1rem;
+    }
+
+    .intro__title {
+        font-size: 2.5rem;
+    }
+
+        .intro__cta {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+        }
+
+    .intro__subtitle {
+        font-size: 1.4rem;
+        margin: auto;
+        color: #353a41;
+        margin-bottom: 5rem;
+        line-height: 1.6;
+    }
+}
