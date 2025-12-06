@@ -13,18 +13,51 @@ The project is still under development. Currently, the CPU section is available,
 - Organized project structure for long-term expansion
 
 ---
+
 ## Folder Structure
-public <br>
- ┣ css <br>
- ┃ ┗ style.css<br>
- ┣ icons<br>
- ┃ ┗ icons.png...<br>
- ┣ images<br>
- ┃ ┗ img.png...<br>
- ┣ js<br>
- ┃ ┗ fetch.js...<br>
- ┗ views<br>
-   ┗ html-pages.html...<br>
+📦public
+ ┣ 📂css
+ ┃ ┗ 📜style.css
+ ┣ 📂icons
+ ┃ ┣ 📜edit-svgrepo-com.svg
+ ┃ ┗ 📜IntroBackground-removebg-preview_upscayl_6x_upscayl-standard-4x.png
+ ┣ 📂images
+ ┃ ┣ 📜Accessories.jpeg
+ ┃ ┣ 📜BestValue.jpeg
+ ┃ ┣ 📜Case.jpeg
+ ┃ ┣ 📜CPU.jpeg
+ ┃ ┣ 📜GPU.jpeg
+ ┃ ┣ 📜High-EndWorkstation.jpeg
+ ┃ ┣ 📜IntroBackground.jpeg
+ ┃ ┣ 📜matherboard.jpeg
+ ┃ ┣ 📜powersupply.jpeg
+ ┃ ┣ 📜ProfessionalGamerBuild 2.jpeg
+ ┃ ┣ 📜ProfessionalGamerBuild.jpeg
+ ┃ ┣ 📜RAM.jpeg
+ ┃ ┣ 📜Screen.jpeg
+ ┃ ┗ 📜Storage.jpeg
+ ┣ 📂js
+ ┃ ┣ 📜api.js
+ ┃ ┣ 📜script.js
+ ┃ ┗ 📜sign-up.js
+ ┗ 📂views
+ ┃ ┣ 📜accessories.htm
+ ┃ ┣ 📜add-cpu.htm
+ ┃ ┣ 📜case.htm
+ ┃ ┣ 📜cpu.ejs
+ ┃ ┣ 📜gpu.htm
+ ┃ ┣ 📜index.htm
+ ┃ ┣ 📜motherboard.htm
+ ┃ ┣ 📜powersupply.htm
+ ┃ ┣ 📜ram.htm
+ ┃ ┣ 📜screen.htm
+ ┃ ┣ 📜sign-up.htm
+ ┃ ┗ 📜storage.htm
+ 📦src
+ ┣ 📜cpu-data.json
+ ┣ 📜server.js
+ ┗ 📜users.json
+
 ---
 ## 📁 Project Status
 
