@@ -21,11 +21,19 @@ server.set('views', viewsPath)
 
 
 /* ========================= Functions ===============================*/
-async function getData(path) {
+async function getData(type) {
   try {
-    const fileData = await fs.readFile(path) //fileData is String
+    let fileData;
+    if (type === 'cpu') {
+      fileData = await fs.readFile(cpuDataFilePath) //fileData is String
+    }
+    else {
+      fileData = await fs.readFile(gpuDataFilePath)
+    }
+
     const Data = JSON.parse(fileData)  // Transform fileData To Arrsy that already has Objects
     return Data;
+
   } catch (error) {
     console.log('Error reading data from ' + path + ': ' + error)
     return [];
@@ -39,7 +47,7 @@ async function saveData(data, type = 'cpu') {
     await fs.writeFile(gpuDataFilePath, dataToString)
     return;
   } else {
-    await fs.writeFile(dataFilePath, dataToString)
+    await fs.writeFile(cpuDataFilePath, dataToString)
     return;
   }
 
@@ -62,7 +70,7 @@ server.get('/cpu', async (req, res) => {
 
     /* res.json(cpusData)
       res.sendFile(path.join(viewsPath, "cpu.htm"))*/
-    res.render('cpu', { cpus: await getData(cpuDataFilePath) });
+    res.render('cpu', { cpus: await getData('cpu') });
 
   } catch (error) {
     console.log('error happened:' + `${error}`)
@@ -87,7 +95,7 @@ server.post('/add-:type', async (req, res) => {
       });
     }
     if (type === 'cpu') {
-      const cpuList = await getData(cpuDataFilePath)
+      const cpuList = await getData('cpu')
       let nextID = cpuList.length + 1;
       const currentID = 'cpu' + String(nextID).padStart(3, '0')
       const structuredCPU = {
@@ -101,16 +109,16 @@ server.post('/add-:type', async (req, res) => {
           base_clock: Number(reqData.base_clock) || null,
           boost_clock: Number(reqData.boost_clock) || null,
           socket: reqData.socket.toUpperCase() || null,
-          consumption: Number(reqData.consumption) || null,
+          consumption: reqData.consumption || null,
           integrated_graphics: reqData.integrated_graphics.toUpperCase() || null
         }
       }
 
       cpuList.push(structuredCPU);
-      await saveData(cpuList)
+      await saveData(cpuList , 'cpu')
     }
     else {
-      const gpuList = await getData(gpuDataFilePath)
+      const gpuList = await getData('gpu')
       let nextID = gpuList.length + 1;
       const currentID = 'gpu' + String(nextID).padStart(3, '0')
 
@@ -148,11 +156,12 @@ server.post('/add-:type', async (req, res) => {
     });
   }
 })
-server.delete('/cpu-delete/:id', async (req, res) => {
+server.delete('/cpu-delete/:id&:type', async (req, res) => {
   try {
     const tragetId = req.params.id;
-    const cpuDataList = await getCpuData()
-    const newCpuList = cpuDataList.filter(cpu => cpu.id != tragetId)
+    const type = req.params.type;
+    const dataList = await getData(type)
+    const newDataList = dataList.filter(element => element.id != tragetId)
 
     if (newCpuList.length === cpuDataList.length) {
       return res.status(404).json({
