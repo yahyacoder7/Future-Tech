@@ -33,8 +33,7 @@ body {
     position: relative;
     font-family: 'Inter', sans-serif;
     direction: ltr;
-    letter-spacing: 0.05em;
-
+    letter-spacing: 0.05rem;
 }
 
 #btn {
@@ -42,22 +41,30 @@ body {
     background: var(--primary-blue);
     color: white;
     padding: 1.8rem;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 300;
     border-radius: 50%;
     border: none;
     z-index: 4;
     bottom: 2rem;
     right: 2rem;
-    box-shadow: 0 0 10px 0 rgba(13, 199, 255, 0.575);
+    box-shadow: 0 0 5px 0 rgba(13, 199, 255, 0.3);
+     cursor: pointer;
+    /*===== for show and hidden =====*/
     transition: all 0.2s ease;
-    display: none;
-    cursor: pointer;
-    /* Added cursor pointer */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+}
+#btn.show{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #btn:hover {
-    background: var(--dark-blue);
-    box-shadow: 0 0 10px 0 var(--dark-blue);
+    background: #2c63bb;
+    box-shadow: 0 0 5px 0 var(--dark-blue);
 }
 
 /* -------------------------------------- */
@@ -131,7 +138,7 @@ body {
     height: 2px;
     /* Increased thickness slightly */
     /* سماكة الخط */
-    bottom: -2px;
+    bottom: 0px;
     /* يبعد 5 بكسل عن أسفل النص */
     left: 50%;
     transform: translateX(-50%);
@@ -172,7 +179,7 @@ body {
 }
 
 #special-link:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     /* تكبير سلس عند التحويم */
     background: var(--dark-blue);
     color: white;
@@ -284,14 +291,11 @@ body {
 
 .categories__title {
     font-size: clamp(2.5rem, 4vw, 3.6rem);
-    /* حجم خط متجاوب وواضح */
+padding-top: 1.5rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 4rem;
-    /* مسافة كافية بين العنوان والبطاقات */
     color: #1f2937;
-    /* لون نص داكن للتباين العالي */
-
 }
 
 .categories__grid {
@@ -335,6 +339,7 @@ body {
     border: none;
     /* إزالة أي حدود سابقة */
 }
+
 
 .category__icon {
     position: absolute;
