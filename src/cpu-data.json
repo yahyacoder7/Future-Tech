@@ -264,5 +264,19 @@
       "consumption": 60,
       "integrated_graphics": "VEGA8"
     }
+  },
+  {
+    "id": "cpu020",
+    "manufacturer": "INTEL",
+    "specs": {
+      "model_name": "I3-2222",
+      "cores": -12,
+      "threads": 2,
+      "base_clock": 1.8,
+      "boost_clock": 1.8,
+      "socket": "FCLGA1200",
+      "consumption": null,
+      "integrated_graphics": "GT710M"
+    }
   }
 ]
