@@ -63,6 +63,9 @@ server.get('/', (req, res) => {
 server.get('/add', (req, res) => {
   res.sendFile(path.join(viewsPath, "add.html"))
 })
+server.get('delete' , (req, res) => {
+  res.sendFile(path.join(viewsPath, "delete.html"))
+})
 
 server.get('/cpu', async (req, res) => {
 
