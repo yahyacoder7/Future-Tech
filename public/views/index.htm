@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <button id="btn"><i class="fa-solid fa-arrow-up"></i></button>
 
     <!-- شريط التنقل -->
@@ -30,9 +31,9 @@
             <!-- روابط التنقل -->
             <nav class="header__navbar">
                 <div class="header__nav-links" id="nav-menu">
-                    <a href="/cpu-add" class="header__nav-link">CPUs</a>
-                    <a href="/gpu" class="header__nav-link">GPUs</a>
-                    <a href="/Accessories" class="header__nav-link">Accessories</a>
+                    <a href="/add" class="header__nav-link">Add</a>
+                    <a href="/edit" class="header__nav-link">Edit</a>
+                    <a href="/delete" class="header__nav-link">Delete</a>
                     <a href="#builds" class="header__nav-link">Pre-built PCs</a>
                     <a href="/build-pc" class="header__nav-link" id="special-link">Build Your Own PC <i
                             class="fa-solid fa-tools"></i>
@@ -267,18 +268,7 @@
     </footer>
 
 
-    <div id="welcomeToast"
-        class="fixed bottom-5 right-5 bg-green-500 text-white px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 transition-all duration-500 transform translate-y-10 opacity-0 z-50">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-        <div>
-            <h4 class="font-bold">Success!</h4>
-            <p class="text-sm">Account created successfully.</p>
-        </div>
-    </div>
-
-    <script src="/script.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>
