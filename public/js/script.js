@@ -1,34 +1,49 @@
-const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
+// navbar.js
 
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+const navbarHTML = `
+ <button id="btn"><i class="fa-solid fa-arrow-up"></i></button>
+ <header class="header">
+        <div class="header__container">
+            <div class="header__logo">
+                <span class="header__logo-text">Future <span id="tech">Tech</span></span>
+            </div>
 
-        // تغيير أيقونة الزر عند الفتح والغلق
-        const icon = menuToggle.querySelector('i');
-        if (navMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-}
+            <button class="mobile-menu-btn" id="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-// زر الصعود للأعلى (من كودك الأصلي لكن أضفت له التفعيل)
+            <nav class="header__navbar">
+                <div class="header__nav-links" id="nav-menu">
+                    <a href="/add" class="header__nav-link">Add</a>
+                    <a href="/edit" class="header__nav-link">Edit</a>
+                    <a href="/delete" class="header__nav-link">Delete</a>
+                    <a href="#builds" class="header__nav-link">Pre-built PCs</a>
+                    <a href="/build-pc" class="header__nav-link" id="special-link">Build Your Own PC <i
+                            class="fa-solid fa-tools"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+`;
+
+
+document.getElementById('navbar-placeholder').innerHTML = navbarHTML;
+
+
+
 const btn = document.getElementById('btn');
 window.onscroll = function () {
-    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
+        window.scrollY >= 400 ? btn.classList.add('show') : btn.classList.remove('show')
 };
-btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+btn.onclick = function(){
+  window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+} 
+
+
 /*window.addEventListener('load', function() {
     const urlParams = new URLSearchParams(window.location.search);
     
