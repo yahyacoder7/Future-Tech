@@ -278,5 +278,19 @@
       "consumption": null,
       "integrated_graphics": "GT710M"
     }
+  },
+  {
+    "id": "cpu021",
+    "manufacturer": "AMD",
+    "specs": {
+      "model_name": "R5-5600X",
+      "cores": 12,
+      "threads": 24,
+      "base_clock": 4.5,
+      "boost_clock": 4.8,
+      "socket": "ZNE4",
+      "consumption": null,
+      "integrated_graphics": null
+    }
   }
 ]
