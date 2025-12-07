@@ -2,7 +2,6 @@
 
 const path = require('path')
 const express = require('express');
-const { split } = require('postcss/lib/list');
 const fs = require('fs').promises
 const server = express()
 const port = 3000;
@@ -15,36 +14,55 @@ server.use(express.json())
 
 /* ========================= Paths ===================================*/
 
-const dataFilePath = path.join(__dirname, 'cpu-data.json')
+const cpuDataFilePath = path.join(__dirname, 'cpu-data.json')
+const gpuDataFilePath = path.join(__dirname, 'gpu-data.json')
 const viewsPath = path.join(__dirname, "..", "public", "views")
 server.set('views', viewsPath)
 
 
 /* ========================= Functions ===============================*/
-async function getCpuData() {
-  const fileData = await fs.readFile(dataFilePath) //fileData is String
-  const cpusData = JSON.parse(fileData)  // Transform fileData To Arrsy that already has Objects
-  return cpusData;
+async function getData(path) {
+  try {
+    const fileData = await fs.readFile(path) //fileData is String
+    const Data = JSON.parse(fileData)  // Transform fileData To Arrsy that already has Objects
+    return Data;
+  } catch (error) {
+    console.log('Error reading data from ' + path + ': ' + error)
+    return [];
+  }
+
 }
-async function saveData(data) {
+
+async function saveData(data, type = 'cpu') {
   const dataToString = JSON.stringify(data, null, 2)
-  await fs.writeFile(dataFilePath, dataToString)
+  if (type === 'gpu') {
+    await fs.writeFile(gpuDataFilePath, dataToString)
+    return;
+  } else {
+    await fs.writeFile(dataFilePath, dataToString)
+    return;
+  }
+
 }
+
+
+
+/* ========================= Routes ===============================*/
 
 server.get('/', (req, res) => {
   res.sendFile(path.join(viewsPath, "index.htm"))
 })
-
-server.get('/cpu-add', (req, res) => {
-  res.sendFile(path.join(viewsPath, "add-cpu.htm"));
+server.get('/add', (req, res) => {
+  res.sendFile(path.join(viewsPath, "add.html"))
 })
+
 server.get('/cpu', async (req, res) => {
 
   try {
 
     /* res.json(cpusData)
       res.sendFile(path.join(viewsPath, "cpu.htm"))*/
-    res.render('cpu', { cpus: await getCpuData() });
+    res.render('cpu', { cpus: await getData(cpuDataFilePath) });
 
   } catch (error) {
     console.log('error happened:' + `${error}`)
@@ -55,36 +73,69 @@ server.get('/cpu', async (req, res) => {
   }
 
 })
-server.post('/cpu-add', async (req, res) => {
+server.post('/add-:type', async (req, res) => {
   try {
+    const type = req.params.type;
     const reqData = req.body
-    const cpuList = await getCpuData()
-    let nextID = cpuList.length + 1;
-    const currentID = 'cpu' + String(nextID).padStart(3, '0')
+    console.log(`📥 New Request for: ${type}`);
+    console.log("Data:", reqData);
 
-    const structuredCPU = {
-      id: currentID,
-      manufacturer: reqData.manufacturer.toUpperCase(),
+    if (!reqData.manufacturer) {
+      return res.status(400).json({
+        success: false,
+        message: "Manufacturer cannot be empty"
+      });
+    }
+    if (type === 'cpu') {
+      const cpuList = await getData(cpuDataFilePath)
+      let nextID = cpuList.length + 1;
+      const currentID = 'cpu' + String(nextID).padStart(3, '0')
+      const structuredCPU = {
+        id: currentID,
+        manufacturer: reqData.manufacturer.toUpperCase(),
 
-      specs: {
-        model_name: reqData.model_name.toUpperCase() || null,
-        cores: Number(reqData.cores) || null,
-        threads: Number(reqData.threads) || null,
-        base_clock: Number(reqData.base_clock) || null,
-        boost_clock: Number(reqData.boost_clock) || null,
-        socket: reqData.socket.toUpperCase() || null,
-        consumption: Number(reqData.consumption) || null,
-        integrated_graphics: reqData.integrated_graphics.toUpperCase() || null
+        specs: {
+          model_name: reqData.model_name.toUpperCase() || null,
+          cores: Number(reqData.cores) || null,
+          threads: Number(reqData.threads) || null,
+          base_clock: Number(reqData.base_clock) || null,
+          boost_clock: Number(reqData.boost_clock) || null,
+          socket: reqData.socket.toUpperCase() || null,
+          consumption: Number(reqData.consumption) || null,
+          integrated_graphics: reqData.integrated_graphics.toUpperCase() || null
+        }
       }
+
+      cpuList.push(structuredCPU);
+      await saveData(cpuList)
+    }
+    else {
+      const gpuList = await getData(gpuDataFilePath)
+      let nextID = gpuList.length + 1;
+      const currentID = 'gpu' + String(nextID).padStart(3, '0')
+
+      const structuredGPU = {
+        id: currentID,
+        manufacturer: reqData.manufacturer.toUpperCase(),
+
+        specs: {
+          model_name: reqData.model_name.toUpperCase() || null,
+          chipset: reqData.chipset || null,
+          vram_size: Number(reqData.vram_size) || null,
+          memory_type: reqData.memory_type || null,
+          core_clock: Number(reqData.core_clock) || null,
+          boost_clock: Number(reqData.boost_clock) || null,
+          cooling: reqData.cooling || null,
+        }
+      }
+      gpuList.push(structuredGPU);
+      await saveData(gpuList, 'gpu');
     }
 
-    cpuList.push(structuredCPU);
-    saveData(cpuList)
-
-    console.log("✅ Data saved successfully!");
-
+    console.log(`✅ ${type.toUpperCase()} DATA saved successfully!`);
     res.json({
-      success: true
+      success: true,
+      message: `${type.toUpperCase()} added successfully`
     });
 
   } catch (error) {
@@ -93,7 +144,7 @@ server.post('/cpu-add', async (req, res) => {
 
     res.status(500).json({
       success: false,
-      message: error.message
+      message: 'server error'
     });
   }
 })
