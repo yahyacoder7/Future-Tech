@@ -1,18 +1,5 @@
 [
   {
-    "id": "gpu001",
-    "manufacturer": "NVIDIA",
-    "specs": {
-      "model_name": "RTX4050XT",
-      "chipset": "nvidia",
-      "vram_size": 8,
-      "memory_type": null,
-      "core_clock": 2245,
-      "boost_clock": 2520,
-      "cooling": null
-    }
-  },
-  {
     "id": "gpu002",
     "manufacturer": "AMD",
     "specs": {
