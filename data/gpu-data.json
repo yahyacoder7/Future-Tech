@@ -1,0 +1,28 @@
+[
+  {
+    "id": "gpu002",
+    "manufacturer": "AMD",
+    "specs": {
+      "model_name": "RX6600XT",
+      "chipset": "amd",
+      "vram_size": 12,
+      "memory_type": null,
+      "core_clock": 3000,
+      "boost_clock": 3200,
+      "cooling": null
+    }
+  },
+  {
+    "id": "gpu003",
+    "manufacturer": "NVIDIA",
+    "specs": {
+      "model_name": "RTX3060XT",
+      "chipset": "nvidia",
+      "vram_size": 12,
+      "memory_type": "gddr6",
+      "core_clock": 3500,
+      "boost_clock": 3600,
+      "cooling": "triple fun"
+    }
+  }
+]
