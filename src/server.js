@@ -63,7 +63,7 @@ server.get('/', (req, res) => {
 server.get('/add', (req, res) => {
   res.sendFile(path.join(viewsPath, "add.html"))
 })
-server.get('delete' , (req, res) => {
+server.get('/delete' , (req, res) => {
   res.sendFile(path.join(viewsPath, "delete.html"))
 })
 
@@ -174,9 +174,9 @@ server.delete('/cpu-delete/:id&:type', async (req, res) => {
     }
     res.status(200).json({
       success: true,
-      message: `The Cpu Number ${tragetId} has benn deleted`
+      message: `The ${type.toUpperCase()} Number ${tragetId} has benn deleted`
     })
-    await saveData(newCpuList)
+    await saveData(newDataList , type)
 
   } catch (error) {
     console.log('error: ' + error)
