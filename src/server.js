@@ -159,24 +159,25 @@ server.post('/add-:type', async (req, res) => {
     });
   }
 })
-server.delete('/cpu-delete/:id&:type', async (req, res) => {
+server.delete('/delete-item/:type/:id', async (req, res) => {
   try {
     const tragetId = req.params.id;
     const type = req.params.type;
     const dataList = await getData(type)
     const newDataList = dataList.filter(element => element.id != tragetId)
 
-    if (newCpuList.length === cpuDataList.length) {
+    if (dataList.length === newDataList.length) {
       return res.status(404).json({
         success: false,
         message: "ID not found"
       })
     }
+    await saveData(newDataList , type)
+    
     res.status(200).json({
       success: true,
       message: `The ${type.toUpperCase()} Number ${tragetId} has benn deleted`
     })
-    await saveData(newDataList , type)
 
   } catch (error) {
     console.log('error: ' + error)
